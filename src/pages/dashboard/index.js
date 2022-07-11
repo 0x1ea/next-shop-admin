@@ -14,8 +14,12 @@ import endPoints from "@services/api";
   },
 ];
  */
+
+const PRODUCT_LIMIT = 5;
+const PRODUCT_OFFSET = 5;
+
 export default function Dashboard() {
-  const products = useFetch(endPoints.products.getProducts(5, 5));
+  const products = useFetch(endPoints.products.getProducts(PRODUCT_LIMIT, PRODUCT_OFFSET));
   console.log(products);
   return (
     <>
@@ -80,11 +84,11 @@ export default function Dashboard() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{product.category.name}</div>
-                        <div className="text-sm text-gray-500">{product.category.id}</div>
+                        {/* <div className="text-sm text-gray-500">{product.category.id}</div> */}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          {product.price}
+                          ${product.price}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -93,6 +97,11 @@ export default function Dashboard() {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <a href="/edit" className="text-indigo-600 hover:text-indigo-900">
                           Edit
+                        </a>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="/edit" className="text-indigo-600 hover:text-indigo-900">
+                          Delete
                         </a>
                       </td>
                     </tr>
